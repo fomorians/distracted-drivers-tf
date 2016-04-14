@@ -2,7 +2,7 @@
 
 This starter project currently ranks in the top 15% of submissions and with a few minor changes can reach the top 10%.
 
-Follow the cloud setup instructions to get started with AWS spot instances without the hassle of setting up infrastructure.
+Follow the Fomoro cloud setup instructions to get started with AWS spot instances without the hassle of setting up infrastructure. Fomoro provisions GPU instances, tracks model and dataset versions, and allows you to focus on iteration.
 
 ## Training
 
