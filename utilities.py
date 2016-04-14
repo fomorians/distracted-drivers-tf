@@ -4,11 +4,18 @@ from __future__ import division
 import math
 import random
 
+import os
 import numpy as np
 import pandas as pd
 import tensorflow as tf
 
 from sklearn.utils import shuffle
+
+def mkdirp(path):
+    try:
+        os.makedirs(path)
+    except OSError:
+        pass
 
 def calc_geom(scores, num_predictions):
     result = scores[0]

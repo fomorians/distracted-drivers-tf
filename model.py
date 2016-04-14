@@ -4,7 +4,7 @@ import numpy as np
 import tensorflow as tf
 
 from layers import Input
-from utilities import batch_iterator
+from utilities import batch_iterator, mkdirp
 
 from sklearn.metrics import log_loss
 from keras.preprocessing.image import ImageDataGenerator
@@ -20,12 +20,14 @@ NUM_CLASSES = 10
 LEARNING_RATE = 1e-3
 
 class Model:
-    def __init__(self, layers, split_index, batch_size, restore=False):
+    def __init__(self, layers, fold_index, batch_size):
         self.sess = tf.get_default_session()
         self.batch_size = batch_size
-        self.split_index = split_index
+        self.fold_index = fold_index
 
-        self.checkpoint_dest = '{}checkpoint_{}'.format(CHECKPOINT_PATH, self.split_index)
+        checkpoint_path = os.path.join(CHECKPOINT_PATH, 'model_{}'.format(self.fold_index))
+        mkdirp(checkpoint_path)
+        self.checkpoint_dest = os.path.join(checkpoint_path, 'checkpoint')
 
         self.global_step = tf.Variable(0, trainable=False, name='global_step')
         global_step_op = self.global_step.assign_add(1)
@@ -74,12 +76,13 @@ class Model:
 
         tf.train.write_graph(self.sess.graph_def, MODEL_PATH, 'model.pb', as_text=False)
 
-        if restore:
-            latest_checkpoint_path = tf.train.latest_checkpoint(self.checkpoint_dest)
-            print('Attempting to restore {}...'.format(latest_checkpoint_path))
-            if latest_checkpoint_path:
-                print('Restoring checkpoint: {}'.format(latest_checkpoint_path))
-                self.saver.restore(self.sess, latest_checkpoint_path)
+        latest_checkpoint_path = tf.train.latest_checkpoint(self.checkpoint_dest)
+        print('Attempting to restore {}...'.format(latest_checkpoint_path))
+        if latest_checkpoint_path:
+            print('Restoring checkpoint: {}'.format(latest_checkpoint_path))
+            self.saver.restore(self.sess, latest_checkpoint_path)
+        else:
+            print('Could not find checkpoint to restore.')
 
     def train(self, X_train, y_train, epoch):
         batch_index = 0
@@ -109,7 +112,7 @@ class Model:
 
             elapsed_time = time.time() - start_time
 
-            print('Training: split: {}, epoch: {}, global step: {}, loss: {}, accuracy: {} (duration: {})'.format(self.split_index, epoch, global_step, loss, accuracy, elapsed_time))
+            print('Training: fold: {}, epoch: {}, global step: {}, loss: {}, accuracy: {} (duration: {})'.format(self.fold_index, epoch, global_step, loss, accuracy, elapsed_time))
 
             if batch_index % summary_interval == 0:
                 self.summary_writer.add_summary(summary, global_step=global_step)
