@@ -85,8 +85,8 @@ def load_test(base):
 
     return X_test, X_test_id
 
-X_train, y_train, driver_ids = load_train('train/')
-X_test, X_test_ids = load_test('test/')
+X_train, y_train, driver_ids = load_train('imgs/train/')
+X_test, X_test_ids = load_test('imgs/test/')
 
 if FLAGS.subset:
     dest = 'data_{}_subset.pkl'.format(FLAGS.downsample)
