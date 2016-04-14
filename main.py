@@ -18,7 +18,7 @@ FLAGS = flags.FLAGS
 
 flags.DEFINE_boolean('test', False, 'If true, test locally.')
 
-DATASET_PATH = os.environ.get('DATASET_PATH', 'data/data_8.pkl' if not FLAGS.test else 'data/data_8_subset.pkl')
+DATASET_PATH = os.environ.get('DATASET_PATH', 'dataset/data_20.pkl' if not FLAGS.test else 'dataset/data_20_subset.pkl')
 SUMMARY_PATH = os.environ.get('SUMMARY_PATH', 'summaries/')
 
 NUM_EPOCHS = 5 if not FLAGS.test else 1

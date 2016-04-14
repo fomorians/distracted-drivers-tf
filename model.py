@@ -13,7 +13,8 @@ CHECKPOINT_PATH = os.environ.get('CHECKPOINT_PATH', 'checkpoints/')
 SUMMARY_PATH = os.environ.get('SUMMARY_PATH', 'summaries/')
 MODEL_PATH = os.environ.get('MODEL_PATH', 'models/')
 
-WIDTH, HEIGHT, NUM_CHANNELS = 640 // 8, 480 // 8, 3
+DOWNSAMPLE = 20
+WIDTH, HEIGHT, NUM_CHANNELS = 640 // DOWNSAMPLE, 480 // DOWNSAMPLE, 3
 NUM_CLASSES = 10
 
 LEARNING_RATE = 1e-3
