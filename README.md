@@ -35,7 +35,7 @@ In this step we'll upload the dataset to Fomoro for training.
 
 #### Model Training
 
-1. Copy the clone url from Github:
+1. Copy the clone url from your fork on Github:
 
 ![HTTPS Clone URL](images/https.jpg)
 
