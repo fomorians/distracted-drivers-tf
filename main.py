@@ -22,7 +22,7 @@ DATASET_PATH = os.environ.get('DATASET_PATH', 'dataset/data_20.pkl' if not FLAGS
 CHECKPOINT_PATH = os.environ.get('CHECKPOINT_PATH', 'checkpoints/')
 SUMMARY_PATH = os.environ.get('SUMMARY_PATH', 'summaries/')
 
-NUM_EPOCHS = 20 if not FLAGS.test else 1
+NUM_EPOCHS = 10 if not FLAGS.test else 1
 MAX_FOLDS = 8
 BATCH_SIZE = 50
 
@@ -38,10 +38,6 @@ num_folds = 0
 
 for train_index, valid_index in LabelShuffleSplit(driver_indices, n_iter=MAX_FOLDS, test_size=0.2, random_state=67):
     print('Running fold...', len(train_index), len(valid_index))
-
-    # next_checkpoint_path = os.path.join(CHECKPOINT_PATH, 'model_{}'.format(num_folds + 1))
-    # if os.path.exists(next_checkpoint_path):
-    #     continue
 
     X_train, y_train = X_train_raw[train_index,...], y_train_raw[train_index,...]
     X_valid, y_valid = X_train_raw[valid_index,...], y_train_raw[valid_index,...]
