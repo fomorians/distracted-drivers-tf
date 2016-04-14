@@ -30,9 +30,6 @@ class Dense:
             shape = [fan_in, self.fan_out]
             W, b = weight_bias(shape, stddev=stddev, bias_init=0.0)
 
-            tf.histogram_summary(W.name, W)
-            tf.histogram_summary(b.name, b)
-
             self.h = tf.matmul(x, W) + b
             return self.h
 
@@ -44,7 +41,6 @@ class Activation:
     def apply(self, x, index, model):
         with tf.name_scope(self.name):
             self.h = self.activation(x)
-            tf.histogram_summary(self.h.name, self.h)
             return self.h
 
 class MaxPool:
@@ -107,9 +103,6 @@ class Conv2D:
 
             shape = self.filter_shape + [input_channels, self.output_channels]
             W, b = weight_bias(shape, stddev=stddev, bias_init=0.0)
-
-            tf.histogram_summary(W.name, W)
-            tf.histogram_summary(b.name, b)
 
             self.h = tf.nn.conv2d(x, W, self.strides, self.padding) + b
             return self.h

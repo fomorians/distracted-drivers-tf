@@ -4,8 +4,8 @@
 *.pkl
 .env/
 logs/
-dataset/test/
-dataset/train/
+dataset/imgs/test/
+dataset/imgs/train/
 dataset/driver_imgs_list.csv
 dataset/*.jpg
 models/

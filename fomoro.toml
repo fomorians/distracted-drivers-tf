@@ -1,7 +1,7 @@
 name = "distracted-drivers-tf"
-repo = "https://github.com/fomorians/distracted-drivers-tf.git"
+repo = "<CLONE URL GOES HERE>"
 description = "State Farm Distracted Driver Challenge"
 environment = "tensorflow"
 
 [datasets]
-"jim/distracted-drivers-tf" = "0.0.1"
+"<USERNAME GOES HERE>/distracted-drivers-tf" = "0.0.1"
