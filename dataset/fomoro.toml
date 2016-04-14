@@ -1,0 +1,4 @@
+name = "distracted-drivers-tf"
+description = "State Farm Distracted Driver Challenge Dataset"
+version = "0.0.1"
+file = "data_20.pkl"

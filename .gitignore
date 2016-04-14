@@ -1,0 +1,16 @@
+.DS_Store
+*.pyc
+*.bin
+*.pkl
+.env/
+logs/
+dataset/test/
+dataset/train/
+dataset/driver_imgs_list.csv
+dataset/*.jpg
+models/
+checkpoints/
+summaries/
+fomoro_summaries/
+*.tar.gz
+*.csv
