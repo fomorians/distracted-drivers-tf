@@ -22,7 +22,7 @@ DATASET_PATH = os.environ.get('DATASET_PATH', 'dataset/data_20.pkl' if not FLAGS
 CHECKPOINT_PATH = os.environ.get('CHECKPOINT_PATH', 'checkpoints/')
 SUMMARY_PATH = os.environ.get('SUMMARY_PATH', 'summaries/')
 
-NUM_EPOCHS = 10 if not FLAGS.test else 1
+NUM_EPOCHS = 20 if not FLAGS.test else 1
 MAX_FOLDS = 8
 BATCH_SIZE = 50
 
