@@ -46,6 +46,10 @@ for train_index, valid_index in LabelShuffleSplit(driver_indices, n_iter=MAX_FOL
         layers = vgg_bn()
         model = Model(layers, num_folds, batch_size=BATCH_SIZE)
 
+        patience = 2
+        wait = 0
+        best = np.Inf
+
         print('Begin training...')
         for epoch in range(NUM_EPOCHS):
             model.train(X_train, y_train, epoch)
@@ -54,6 +58,19 @@ for train_index, valid_index in LabelShuffleSplit(driver_indices, n_iter=MAX_FOL
             loss, accuracy, score = model.validate(X_valid, y_valid)
 
             print('Validation: fold: {}, epoch: {}, loss: {}, accuracy: {}, score: {}'.format(num_folds, epoch, loss, accuracy, score))
+
+            if loss < best:
+                print('New best validation loss! Was: {}, Now: {}'.format(best, loss))
+                best = loss
+                wait = 0
+            else:
+                wait += 1
+                print('Validation loss did not improve for {}/{} epochs.'.format(wait, patience))
+
+            if wait == 2:
+                print('Stopping early. Validation loss did not improve for {}/{} epochs.'.format(wait, patience))
+                break
+
 
         model.summary_writer.close()
         scores_total.append(score)
