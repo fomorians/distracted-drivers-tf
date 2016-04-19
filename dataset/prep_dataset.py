@@ -38,8 +38,8 @@ def load_train(base):
     print('Reading train images...')
     for j in range(NUM_CLASSES):
         print('Loading folder c{}...'.format(j))
-        paths = glob.glob('{}c{}/*.jpg'.format(base, j))
         driver_ids_group = driver_imgs_grouped.get_group('c{}'.format(j))
+        paths = os.path.join(base, 'c{}/'.format(j)) + driver_ids_group.img
 
         if FLAGS.subset:
             paths = paths[:100]
@@ -85,8 +85,8 @@ def load_test(base):
 
     return X_test, X_test_id
 
-X_train, y_train, driver_ids = load_train('train/')
-X_test, X_test_ids = load_test('test/')
+X_train, y_train, driver_ids = load_train('imgs/train/')
+X_test, X_test_ids = load_test('imgs/test/')
 
 if FLAGS.subset:
     dest = 'data_{}_subset.pkl'.format(FLAGS.downsample)
