@@ -1,7 +1,0 @@
-name = "distracted-drivers-tf"
-repo = "<CLONE URL GOES HERE>"
-description = "State Farm Distracted Driver Challenge"
-environment = "tensorflow"
-
-[datasets]
-"<USERNAME GOES HERE>/distracted-drivers-tf" = "0.0.1"
