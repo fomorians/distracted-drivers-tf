@@ -2,8 +2,6 @@
 
 This starter project currently ranks in the top 15% of submissions and with a few minor changes can reach the top 10%.
 
-Follow the Fomoro cloud setup instructions to get started with AWS spot instances without the hassle of setting up infrastructure. Fomoro provisions GPU instances, tracks model and dataset versions, and allows you to focus on iteration.
-
 ## Training
 
 Before using this code you must agree to the [Kaggle competition's terms of use](https://www.kaggle.com/c/state-farm-distracted-driver-detection).
